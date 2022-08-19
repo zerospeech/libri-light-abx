@@ -9,7 +9,8 @@ import setuptools
 setuptools.setup(
     name='libriabx',
     description='A wrapper installer around the librispeech implementation of abx',
-    version='1.0',
+    version='1.0.1',
+    install_requires=['torch', 'progressbar', 'torchaudio']
     # python package dependencies
     setup_requires=['cython', 'numpy'],
     # include Python code
