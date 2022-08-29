@@ -155,7 +155,7 @@ class ABXFeatureLoader:
         totSize = 0
 
         print("  > Building the input features...")
-        bar = progressbar.ProgressBar(prefix='  > ', maxval=len(seqList))
+        bar = progressbar.ProgressBar(prefix='  > ', max_value=len(seqList))
         bar.start()
 
         for index, vals in enumerate(seqList):

@@ -135,7 +135,7 @@ def get_abx_scores_dtw_on_group(group_iterator,
                                 symmetric):
     data_list = []
     coords_list = []
-    bar = progressbar.ProgressBar(prefix='  > ', maxval=len(group_iterator))
+    bar = progressbar.ProgressBar(prefix='  > ', max_value=len(group_iterator))
     bar.start()
 
     with torch.no_grad():
