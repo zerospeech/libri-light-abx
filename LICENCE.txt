@@ -1,4 +1,4 @@
-The libri_light module is licenced separatly and all rights belong to the corresponding creators.
+The libri_light module is licenced separately and all rights belong to the corresponding creators.
 The rest of the modifications are licenced under the MIT licence bellow
 
 Copyright 2022 (c) CoML team (hybrid entity belonging to ENS/PSL/Inria).

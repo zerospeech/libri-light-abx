@@ -1,0 +1,60 @@
+[project]
+name = "zerospeech-libriabx"
+
+description = "Wrapper package for librilight-abx."
+authors = [
+    {name = "Nicolas Hamilakis", email="nicolas.hamilakis@ens.psl.eu"},
+    {name = "CoML Team", email = "dev@zerospeech.com"}
+]
+license = {file = "LICENSE.txt"}
+requires-python = ">=3.7"
+keywords = [
+    "speech", "machine-learning", "challenges",
+    "research-tool", "benchmark-speech", "zerospeech"
+]
+classifiers = [
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Intended Audience :: Science/Research"
+]
+dependencies = [
+    'torch',
+    'progressbar2',
+    'torchaudio',
+    'numpy'
+]
+dynamic = ["version", "readme"]
+
+[project.urls]
+documentation = "https://zerospeech.com/toolbox/"
+homepage = "https://zerospeech.com/"
+repository = "https://github.com/zerospeech/libri-light-abx"
+
+[project.scripts]
+libri-abx = "libriabx.libri_light.eval_ABX:main"
+
+[project.optional-dependencies]
+
+dev = [
+    "ipython",
+    "pytest",
+    "twine",
+    "build"
+]
+
+
+
+[build-system]
+requires = ["setuptools>=45", "setuptools_scm[toml]>=6.2", 'cython', 'numpy']
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.dynamic]
+
+readme = {file = "README.md"}
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["libriabx*"]
+exclude = ["examples*", "tests*"]
+
+
+[tool.setuptools_scm]
