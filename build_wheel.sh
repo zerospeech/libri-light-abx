@@ -1,5 +1,6 @@
 # Compile wheels
-declare -a PyVersions=( 'cp39-cp39' )
+declare -a PyVersions=( 'cp38-cp38' 'cp39-cp39' 'cp310-cp310' 'cp311-cp311')
+rm -rf /io/dist/*
 
 for PYVER in "${PyVersions[@]}"; do
   PYBIN="/opt/python/${PYVER}/bin"
@@ -18,3 +19,6 @@ done
 #  PYBIN="/opt/python/${PYVER}/bin"
 #  "${PYBIN}/pip" install zerospeech-libriabx -f /io/dist/
 #done
+
+# remove all linux_x86_64 flagged binary wheels
+find /io/dist/ -name "*linux_x86_64.whl" -type f -delete

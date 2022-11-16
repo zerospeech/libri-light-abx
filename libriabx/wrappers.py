@@ -1,6 +1,9 @@
 from dataclasses import dataclass
 from enum import Enum
-from typing import Optional
+from pathlib import Path
+from typing import Optional, List
+
+from vdataset import mount, unmount
 
 from .libri_light.eval_ABX import main as run_abx
 
@@ -38,7 +41,26 @@ class AbxArguments:
     max_x_across: int = 5
     # location to output the results
     out: Optional[str] = None
+    # boolean flag setting the path_data as a mounted dataset
+    _is_mounted: bool = False
+
+    @classmethod
+    def load_from_file_list(cls, file_list: List[Path], **kwargs):
+        """ Create a mounted folder containing all the files as symlinks """
+        data_loc = mount(file_list)
+        if data_loc:
+            return cls(path_data=str(data_loc), **kwargs)
+
+        raise SystemError('Could not create temp folder')
+
+    def clear_mounts(self):
+        """ Clean mounted folder """
+        if self._is_mounted:
+            unmount(self.path_data)
 
 
-def abx(args: AbxArguments):
-    return run_abx(arg_obj=args)
+def abx_eval(args: AbxArguments):
+    """ Run abx evaluation """
+    results = run_abx(arg_obj=args)
+    args.clear_mounts()
+    return results

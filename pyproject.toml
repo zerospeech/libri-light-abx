@@ -1,13 +1,13 @@
 [project]
 name = "zerospeech-libriabx"
-
+readme = "README.md"
 description = "Wrapper package for librilight-abx."
 authors = [
     {name = "Nicolas Hamilakis", email="nicolas.hamilakis@ens.psl.eu"},
     {name = "CoML Team", email = "dev@zerospeech.com"}
 ]
 license = {file = "LICENSE.txt"}
-requires-python = ">=3.7"
+requires-python = ">=3.8"
 keywords = [
     "speech", "machine-learning", "challenges",
     "research-tool", "benchmark-speech", "zerospeech"
@@ -20,9 +20,10 @@ dependencies = [
     'torch',
     'progressbar2',
     'torchaudio',
-    'numpy'
+    'numpy',
+    'virtual-dataset'
 ]
-dynamic = ["version", "readme"]
+dynamic = ["version"]
 
 [project.urls]
 documentation = "https://zerospeech.com/toolbox/"
@@ -42,14 +43,10 @@ dev = [
 ]
 
 
-
 [build-system]
 requires = ["setuptools>=45", "setuptools_scm[toml]>=6.2", 'cython', 'numpy']
 build-backend = "setuptools.build_meta"
 
-[tool.setuptools.dynamic]
-
-readme = {file = "README.md"}
 
 [tool.setuptools.packages.find]
 where = ["."]
