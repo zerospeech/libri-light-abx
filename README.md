@@ -9,12 +9,14 @@ as a module.
 
 For security & compatibility reasons build is required to happen in a docker using manylinux1 as build target.
 
-To do this
+To do this run :
 
 ```shell
 > docker pull quay.io/pypa/manylinux2014_x86_64
->  docker run --rm -v `pwd`:/io quay.io/pypa/manylinux2014_x86_64 bash /io/build_wheel.sh
+> docker run --rm -v `pwd`:/io quay.io/pypa/manylinux2014_x86_64 bash /io/build_wheel.sh
 ```
+
+> To check for pyversions available `docker run --rm -v `pwd`:/io quay.io/pypa/manylinux2014_x86_64 ls /opt/python`
 
 This allows to populate with compiled versions of libriabx for python3.7, python3.8, python3.9, python3.10
 The package can then be uploaded to pypi as normally
