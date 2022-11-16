@@ -82,7 +82,7 @@ To do this run :
 > docker run --rm -v `pwd`:/io quay.io/pypa/manylinux2014_x86_64 bash /io/build_wheel.sh
 ```
 
-> To check for pyversions available `docker run --rm -v `pwd`:/io quay.io/pypa/manylinux2014_x86_64 ls /opt/python`
+> To check for pyversions available `docker run --rm quay.io/pypa/manylinux2014_x86_64 ls /opt/python`
 
 This allows to populate with compiled versions of libriabx for python3.8, python3.9, python3.10, python3.11 in the dist folder.
 For more information see [ManyLinux Implementation](https://github.com/pypa/manylinux)
