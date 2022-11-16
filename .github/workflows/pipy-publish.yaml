@@ -13,24 +13,24 @@ jobs:
       uses: actions/setup-python@v1
       with:
         python-version: '3.x'
-    - name: Build Source Dist
+    - name: Install dependencies
+      env:
+        TWINE_USERNAME: ${{ secrets.PYPI_USERNAME }}
+        TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
+      run: |
+        python -m pip install --upgrade pip
+        pip install setuptools build wheel twine
+    - name: Build & Publish Source Dist
       run: |
         python -m build --sdist
+        twine upload dist/*tar.gz
     - name: Build wheels
       uses: RalfG/python-wheels-manylinux-build@v0.5.0-manylinux2014_x86_64
       with:
         python-versions: 'cp38-cp38 cp39-cp39'
         build-requirements: 'setuptools numpy setuptools_scm[toml] cython'
-    - name: Install dependencies
+    - name: Publish wheels
       run: |
-        python -m pip install --upgrade pip
-        pip install setuptools build wheel twine
-    - name: Publish packages
-      env:
-        TWINE_USERNAME: ${{ secrets.PYPI_USERNAME }}
-        TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
-      run: |
-        twine upload dist/*tar.gz
         twine upload dist/*-manylinux*.whl
         
 
