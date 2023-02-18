@@ -1,6 +1,6 @@
 name: Build Conda packages
 
-on: workflow_dispatch
+on: [push]
 
 jobs:
   build-conda:
@@ -37,8 +37,8 @@ jobs:
           path: dist
           retention-days: 5
           if-no-files-found: error
-      # - name: upload builds to anaconda
-      #   shell: bash -el {0}
-      #   run: |
-      #     conda install anaconda-client
-      #     anaconda -t ${{ secrets.ANACONDA_TOKEN }} upload -u ${{ secrets.CONDA_USERNAME }} dist/*/*.tar.bz2 --force
+      - name: upload builds to anaconda
+        shell: bash -el {0}
+        run: |
+          conda install anaconda-client
+          anaconda -t ${{ secrets.ANACONDA_TOKEN }} upload -u ${CONDA_USERNAME} dist/*/*.tar.bz2 --force
