@@ -42,5 +42,5 @@ jobs:
         run: |
           conda install anaconda-client
           fs=( $(find dist -name '*.tar.bz2') )
-          echo "${fs[*]}"
-          anaconda -t ${{ secrets.ANACONDA_TOKEN }} upload -u ${CONDA_USERNAME} "${fs[@]}" --force
+          echo "to upload: ${fs[*]}"
+          anaconda -t ${{ secrets.ANACONDA_TOKEN }} upload -u ${{ env.CONDA_USERNAME }} "${fs[@]}" --force
