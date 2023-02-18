@@ -27,6 +27,7 @@ jobs:
         with:
           miniforge-version: "latest"
           conda-build-version: "*"
+          python-version: ${{ matrix.python-version }}
       - name: build recipe
         shell: bash -el {0}
         run: conda build -c conda-forge -c pytorch -c sdrobert conda-recipe --output-folder dist --python=${{ matrix.python-version }} --numpy=${{ matrix.numpy-version }}
