@@ -21,6 +21,10 @@ jobs:
           - python-version: "3.10"
             numpy-version: "1.21"
     steps:
+      - name: configure git
+        run: |
+          git config --global core.eol lf
+          git config --global core.autocrlf false
       - name: checkout repo
         uses: actions/checkout@v2
       - name: setup miniconda

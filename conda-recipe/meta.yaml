@@ -9,8 +9,9 @@ source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/zerospeech-libriabx-{{ version }}.tar.gz
   sha256: b4445070dbecbe7559775961f508c468c161f9292f165fcbeed20ca2d7e5042c
   patches:
-    - cython-unix.patch  # [no win]
-    - cython-win.patch  # [win]
+    - cython.patch
+    # - cython-unix.patch  # [not win]
+    # - cython-win.patch  # [win]
 
 
 build:
