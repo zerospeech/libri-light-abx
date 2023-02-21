@@ -1,6 +1,6 @@
 name: Build Conda packages
 
-on: dispatch_workflow
+on: [push]
 
 jobs:
   build-conda:
