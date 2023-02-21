@@ -1,9 +1,6 @@
 name: Build Conda packages
 
-on: [push]
-
-env:
-  ANACONDA_USERNAME: sdrobert
+on: workflow_dispatch
 
 jobs:
   build-conda:
