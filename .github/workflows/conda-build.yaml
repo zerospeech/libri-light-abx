@@ -2,6 +2,9 @@ name: Build Conda packages
 
 on: [push]
 
+env:
+  ANACONDA_USERNAME: sdrobert
+
 jobs:
   build-conda:
     name: build-conda (${{ matrix.python-version }}, ${{ matrix.os }})
@@ -40,9 +43,9 @@ jobs:
       - name: upload builds to anaconda
         shell: bash -el {0}
         run: |
+          [ -z "$ANACONDA_USERNAME" ] && echo "ANACONDA_USERNAME missing!"
           [ -z "${{ secrets.ANACONDA_TOKEN}}" ] && echo "ANACONDA_TOKEN missing!"
-          [ -z "$CONDA_USERNAME" ] && echo "CONDA_USERNAME missing"
           conda install anaconda-client
           fs=( $(find dist -name '*.tar.bz2') )
           echo "to upload: ${fs[*]}"
-          anaconda -t "${{ secrets.ANACONDA_TOKEN }}" upload -u "${{ env.CONDA_USERNAME }}" "${fs[@]}" --force
+          anaconda -t "${{ secrets.ANACONDA_TOKEN }}" upload -u "$ANACONDA_USERNAME" "${fs[@]}" --force
