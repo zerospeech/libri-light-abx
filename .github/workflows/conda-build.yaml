@@ -1,9 +1,6 @@
 name: Build Conda packages
 
-on: [push]
-
-env:
-  ANACONDA_USERNAME: sdrobert
+on: dispatch_workflow
 
 jobs:
   build-conda:
@@ -12,7 +9,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: ["ubuntu-latest", "macos-latest", "windows-latest"]
+        # os: ["ubuntu-latest", "macos-latest", "windows-latest"]
+        os: ["windows-latest"]
         # python-version: ["3.8", "3.9", "3.10"]
         python-version: ["3.10"]
         include:
@@ -33,13 +31,13 @@ jobs:
       - name: build recipe
         shell: bash -el {0}
         run: conda build -c conda-forge -c pytorch -c sdrobert conda-recipe --output-folder dist --python=${{ matrix.python-version }} --numpy=${{ matrix.numpy-version }}
-      - name: upload builds to github
-        uses: actions/upload-artifact@v3
-        with:
-          name: conda-${{ matrix.os }}-py${{ matrix.python-version }}
-          path: dist
-          retention-days: 5
-          if-no-files-found: error
+      # - name: upload builds to github
+      #   uses: actions/upload-artifact@v3
+      #   with:
+      #     name: conda-${{ matrix.os }}-py${{ matrix.python-version }}
+      #     path: dist
+      #     retention-days: 5
+      #     if-no-files-found: error
       - name: upload builds to anaconda
         shell: bash -el {0}
         run: |

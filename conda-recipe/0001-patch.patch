@@ -1,7 +1,7 @@
 From 715929fcb067a3205cb9ea7d648d382b71a870bd Mon Sep 17 00:00:00 2001
 From: Sean Robertson <sdrobert@cs.toronto.edu>
 Date: Tue, 21 Feb 2023 15:37:27 -0500
-Subject: patch
+Subject: [PATCH 1/2] patch
 
 ---
  setup.py | 8 +++++---
@@ -32,5 +32,5 @@ index b112046..21140a0 100644
      # http://docs.cython.org/en/latest/src/quickstart/build.html
      zip_safe=False
 -- 
-2.29.2.windows.2
+2.25.1
 
