@@ -26,11 +26,13 @@ jobs:
       - name: setup miniconda
         uses: conda-incubator/setup-miniconda@v2
         with:
-          conda-build-version: "latest"
+          conda-build-version: "*"
           auto-update-conda: true
           uses-mamba: true
           miniforge-variant: Mambaforge
           python-version: ${{ matrix.python-version }}
+          activate-environment: ""
+          auto-activate-base: true
       - name: build recipe
         shell: bash -el {0}
         run: conda build -c conda-forge -c pytorch -c sdrobert conda-recipe --output-folder dist --python=${{ matrix.python-version }} --numpy=${{ matrix.numpy-version }}
