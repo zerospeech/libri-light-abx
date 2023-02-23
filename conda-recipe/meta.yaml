@@ -1,0 +1,61 @@
+{% set name = "zerospeech-libriabx" %}
+{% set version = "1.0.5" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/zerospeech-libriabx-{{ version }}.tar.gz
+  sha256: b4445070dbecbe7559775961f508c468c161f9292f165fcbeed20ca2d7e5042c
+  patches:
+    - cython.patch
+    # - cython-unix.patch  # [not win]
+    # - cython-win.patch  # [win]
+
+
+build:
+  skip: true  # [py<38]
+  entry_points:
+    - libri-abx = libriabx.libri_light.eval_ABX:main
+  script: {{ PYTHON }} -m pip install . -vv
+  number: 0
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+  host:
+    - python
+    - setuptools >=45
+    - setuptools-scm >=6.2
+    - cython
+    - numpy
+    - pip
+  run:
+    - python
+    - pytorch
+    - progressbar2
+    - torchaudio
+    - virtual-dataset
+    - {{ pin_compatible('numpy') }}
+
+test:
+  imports:
+    - libriabx
+  commands:
+    - pip check
+    - libri-abx --help
+  requires:
+    - pip
+    - pytorch::pytorch 1.13.1
+    - pytorch::torchaudio 0.13.1
+
+about:
+  home: https://pypi.org/project/zerospeech-libriabx/
+  summary: Wrapper package for librilight-abx.
+  license: MIT
+  license_file: LICENCE.txt
+
+extra:
+  recipe-maintainers:
+    - spro
